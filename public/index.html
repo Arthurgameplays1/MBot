@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Bot</title>
+</head>
+<body>
+  <h1>Comandos do Bot Minecraft</h1>
+  <input id="comando" placeholder="Digite comando ou mensagem" />
+  <button onclick="enviar()">Enviar</button>
+
+  <h2>Chat humano:</h2>
+  <input id="humanchat" placeholder="Chat entre controladores" />
+  <button onclick="humano()">Enviar</button>
+  <div id="chat"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    function enviar() {
+      const cmd = document.getElementById('comando').value;
+      socket.emit('command', cmd);
+      document.getElementById('comando').value = '';
+    }
+    function humano() {
+      const txt = document.getElementById('humanchat').value;
+      socket.emit('humanchat', txt);
+      document.getElementById('humanchat').value = '';
+    }
+    socket.on('humanchat', (msg) => {
+      const div = document.getElementById('chat');
+      div.innerHTML += `<p>${msg}</p>`;
+    });
+  </script>
+</body>
+</html>
