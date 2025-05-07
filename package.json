@@ -1,0 +1,14 @@
+{
+  "name": "minecraft-bot-panel",
+  "version": "1.0.0",
+  "description": "Bot Minecraft com painel via socket.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mineflayer": "^4.11.1",
+    "socket.io": "^4.7.2"
+  }
+}
